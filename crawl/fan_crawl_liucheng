@@ -1,0 +1,12 @@
+弄清楚浏览器的执行过程后，我们就可以模拟其行为通过python作网页爬取。操作步骤如下：
+
+1.用requests.get(url)获取js代码
+
+2.通过正则表达式对代码进行解析，获得JS函数名,JS函数参数和JS函数主体，
+并将执行函数eval()语句修改为return语句返回cookie值
+
+3.调用execjs库的executeJS()功能执行js代码获得cookie值
+
+4.将cookie值转化为字典格式，用requests.get(url, cookies = cookie)方法
+获取得到正确的网页信息
+
