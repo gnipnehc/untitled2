@@ -1,0 +1,16 @@
+摁下F12，找到Network，点击XHR，然后刷新，
+接着点击加载更多发现通过AJAX传过来的数据包就会又出现一个。
+可以看到这些发过来的数据包很有规律，
+它们的命名都是posts?page={ }&count=20&order=weekly也就是只有page属性的值在改变。
+
+接下来看一下它的请求URL（Request URL）：
+https://tuchong.com/rest/tags/风光/posts?page={}&count=20&order=weekly ，
+也是只有page属性改变。
+
+那么就只看一个属性就可以：
+cover_image_src: “https://photo.tuchong.com/397845/g/488047063.webp”，
+可以看到他的值除了两部分数字，其他都是固定的，
+这样只需要搞懂那两部分数字是干什么的就可以了。通过观察可以看到，
+前一部分数字实际上就是属性author_id的值，后一部分实际上就是属性img_id的值，
+而这两个值，通过字典的方式就可以获取，这样就可以拼接成一个完整的图片下载地址了
+
