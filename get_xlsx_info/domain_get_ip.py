@@ -18,10 +18,10 @@ def get_all_ip(domain):
         host = gethostbyname(domain)  # 域名反解析的ip
         # print(host)
     except Exception as e:
-        with open('result.txt', 'a+') as err:
+        with open('result.csv', 'a+') as err:
             err.write('null' + '\n')
     else:
-        with open('result.txt', 'a+') as r:
+        with open('result.csv', 'a+') as r:
             # r.write(line.strip('\n') + ':')  # 显示有ip绑定的域名，用空格隔开
             if host == '0.0.0.0':
                 r.write('null' + '\n')
@@ -45,5 +45,6 @@ if __name__ == '__main__':
         # print(num)
         domain = num
         count += 1
+        print('count{}:  '.format(count)+domain)
         get_all_ip(domain)
     print('总共 {} 条数据'.format(count))
