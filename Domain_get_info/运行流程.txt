@@ -1,0 +1,13 @@
+icp.py 和  get_info.py运行流程
+    1. 将url数据存到domain.txt中
+
+    2. 运行icp.py，将url发送到接口,查看任务的进行程度，登录RabbitMQ查看
+
+    3. 修改headers里authorization里的Bearer，需要在smis.socmap.org里Network里XHR中获取最新的，复制到get_info.py中
+
+       修改save的保存文件名称，
+
+    4. 运行get_info.py文件，从远处拿取信息并保存到save的文件里
+
+ip_info.py 运行流程
+    将main函数里的'ip类型'和'ip归属地'改成需要的表格里的列名
