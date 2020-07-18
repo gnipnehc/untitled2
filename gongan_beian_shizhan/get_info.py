@@ -12,11 +12,11 @@ count = 0
 def into_url(domain_name):
     bowser.find_element_by_xpath('//*[@id="myTab"]/li[2]/a').click()
     input_name = bowser.find_element_by_xpath('//*[@id="domain"]')
-    # input_name.clear()
+    input_name.clear()
     input_name.send_keys(domain_name)
     time.sleep(0.5)
     input_code = bowser.find_element_by_id('ver2')
-    # input_code.clear()
+    input_code.clear()
     input_code.send_keys(soc_code())
     time.sleep(0.5)
 
@@ -63,6 +63,8 @@ def into_url(domain_name):
                         if list[4] == '网站二级域名':
                             most = list[7]
                             wtype = list[9]
+                            with open('have_second_domain.txt', 'a+') as f:
+                                f.write(domain_name)
                         else:
                             most = list[5]
                             wtype = list[7]
@@ -92,11 +94,15 @@ def into_url(domain_name):
                         if list[4] == '网站二级域名':
                             most = list[7]
                             wtype = list[9]
+                            with open('have_second_domain.txt', 'a+') as f:
+                                f.write(domain_name)
                         else:
                             most = list[5]
                             wtype = list[7]
                         # 两个域名不一致，则存入两条数据
                         second_domain = list[3]
+                        with open('two_domain_name.txt', 'a+') as f:
+                            f.write(domain+second_domain+'\n')
 
                         user_message = bowser.find_element_by_xpath('/html/body/div[1]/div[3]/div[3]/div[2]/table')
                         user_content = user_message.find_elements_by_tag_name('td')
@@ -111,7 +117,7 @@ def into_url(domain_name):
                         filing_time = shuju[7]
 
                         massage1 = url_all_info(
-                            main_domain=domain, url_name=name, main_body=most, url_type=wtype, use_name=uname,
+                            main_domain=domain.strip('\n'), url_name=name, main_body=most, url_type=wtype, use_name=uname,
                             recode_number=case_number, public_address=record_address, recode_time=filing_time,
                             is_code=True)
 
@@ -141,7 +147,13 @@ def into_url(domain_name):
                         time.sleep(0.5)
             except:
                 print('500 error')
-                with open('error.txt', 'a+') as f:
+                info = url_all_info(
+                    main_domain=domain_name.strip('\n'), url_name='', main_body='', url_type='', use_name='',
+                    recode_number='', public_address='', recode_time='', is_code=False
+                )
+                db.session.add(info)
+                db.session.commit()
+                with open('weihuing_domain.txt', 'a+') as f:
                     f.write(domain_name)
                     time.sleep(1)
                 bowser.refresh()
@@ -165,6 +177,8 @@ def into_url(domain_name):
                     if list[4] == '网站二级域名':
                         most = list[7]
                         wtype = list[9]
+                        with open('have_second_domain.txt', 'a+') as f:
+                            f.write(domain_name)
                     else:
                         most = list[5]
                         wtype = list[7]
@@ -194,11 +208,15 @@ def into_url(domain_name):
                     if list[4] == '网站二级域名':
                         most = list[7]
                         wtype = list[9]
+                        with open('have_second_domain.txt', 'a+') as f:
+                            f.write(domain_name)
                     else:
                         most = list[5]
                         wtype = list[7]
                     # 两个域名不一致，则存入两条数据
                     second_domain = list[3]
+                    with open('two_domain_name.txt', 'a+') as f:
+                        f.write(domain+second_domain+'\n')
 
                     user_message = bowser.find_element_by_xpath('/html/body/div[1]/div[3]/div[3]/div[2]/table')
                     user_content = user_message.find_elements_by_tag_name('td')
@@ -213,7 +231,7 @@ def into_url(domain_name):
                     filing_time = shuju[7]
 
                     massage1 = url_all_info(
-                        main_domain=domain, url_name=name, main_body=most, url_type=wtype, use_name=uname,
+                        main_domain=domain.strip('\n'), url_name=name, main_body=most, url_type=wtype, use_name=uname,
                         recode_number=case_number, public_address=record_address, recode_time=filing_time,
                         is_code=True)
 
@@ -243,7 +261,13 @@ def into_url(domain_name):
                     time.sleep(0.5)
         except:
             print('500 error')
-            with open('error.txt', 'r') as f:
+            info = url_all_info(
+                main_domain=domain_name.strip('\n'), url_name='', main_body='', url_type='', use_name='',
+                recode_number='', public_address='', recode_time='', is_code=False
+            )
+            db.session.add(info)
+            db.session.commit()
+            with open('weihuing_domain.txt', 'a+') as f:
                 f.write(domain_name)
                 time.sleep(1)
             bowser.refresh()
