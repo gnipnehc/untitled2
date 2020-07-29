@@ -12,11 +12,14 @@ url = "http://www.beian.gov.cn/portal/registerSystemInfo"
 # 有头模式
 # options = FOptions()
 # bowser = webdriver.Chrome(options=options)
+# bowser = webdriver.Chrome()
 
 # 无头模式
 options = webdriver.ChromeOptions()
 options.set_headless()
 bowser = webdriver.Chrome(chrome_options=options)
+
+bowser.set_window_size(1200, 900)
 
 bowser.get(url)
 bowser.get(url)
