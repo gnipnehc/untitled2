@@ -89,6 +89,7 @@ def into_url(domain_name):
                             db.session.add(massage)
                             db.session.commit()
                             time.sleep(1)
+                            bowser.refresh()
 
                         else:
                             name = list[1]
@@ -125,11 +126,13 @@ def into_url(domain_name):
                                 recode_number=case_number, public_address=record_address, recode_time=filing_time,
                                 is_code=True)
                             with open('two_domain_name.txt', 'a+') as f:
-                                f.write(domain_name)
+                                f.write(domain)
                             db.session.add(massage1)
                             db.session.add(massage2)
                             db.session.commit()
                             time.sleep(1)
+                            bowser.refresh()
+                            bowser.find_element_by_xpath('//*[@id="searchtype"]/option[2]').click()
 
                 except :
                     if bowser.find_element_by_xpath('//*[@id="kong_wzym"]'):
@@ -140,7 +143,7 @@ def into_url(domain_name):
                         )
                         db.session.add(info)
                         db.session.commit()
-                        time.sleep(0.5)
+                        time.sleep(1)
 
             except:
                 print(domain_name, '500 error')
@@ -344,6 +347,7 @@ def into_url(domain_name):
                         db.session.add(massage)
                         db.session.commit()
                         time.sleep(1)
+                        bowser.refresh()
 
                     else:
                         name = list[1]
@@ -385,7 +389,10 @@ def into_url(domain_name):
                         db.session.add(massage2)
                         db.session.commit()
                         time.sleep(1)
-            except :
+                        bowser.refresh()
+                        bowser.find_element_by_xpath('//*[@id="searchtype"]/option[2]').click()
+
+            except:
                 if bowser.find_element_by_xpath('//*[@id="kong_wzym"]'):
                     # print(domain_name, 'qiyuweikong')
                     info = url_all_info(
@@ -406,8 +413,9 @@ def into_url(domain_name):
             db.session.commit()
             with open('weihuing_domain.txt', 'a+') as f:
                 f.write(domain_name)
+                time.sleep(0.5)
             bowser.refresh()
-            time.sleep(1)
+            time.sleep(0.5)
             bowser.find_element_by_xpath('//*[@id="searchtype"]').click()
             bowser.find_element_by_xpath('//*[@id="searchtype"]/option[2]').click()
             time.sleep(1)
