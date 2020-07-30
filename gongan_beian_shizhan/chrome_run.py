@@ -1,6 +1,6 @@
 from selenium import webdriver
 import time
-from selenium.webdriver.chrome.options import Options as FOptions
+from selenium.webdriver.chrome.options import Options
 
 
 headers = {
@@ -10,16 +10,14 @@ headers = {
 url = "http://www.beian.gov.cn/portal/registerSystemInfo"
 
 # 有头模式
-# options = FOptions()
-# bowser = webdriver.Chrome(options=options)
 # bowser = webdriver.Chrome()
 
-# 无头模式
-options = webdriver.ChromeOptions()
-options.set_headless()
-bowser = webdriver.Chrome(chrome_options=options)
 
-bowser.set_window_size(1200, 900)
+# 无头模式
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+bowser = webdriver.Chrome(chrome_options=chrome_options)
+bowser.set_window_size(1600, 1200)
 
 bowser.get(url)
 bowser.get(url)
