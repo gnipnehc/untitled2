@@ -1,17 +1,16 @@
 from PIL import Image
 from gongan_beian_shizhan.chrome_run import bowser
-import time
 
 
 class save_screen(object):
     # 保存截图
-    click_domain = bowser.find_element_by_xpath('//*[@id="searchtype"]').click()
-    tags = bowser.find_element_by_xpath('//*[@id="searchtype"]/option[2]').click()
-    bowser.find_element_by_xpath('//*[@id="searchImg"]').click()
-    time.sleep(1)
+    click_domain = bowser.find_element_by_xpath('//*[@id="myTab"]/li[2]/a')
+    click_domain.click()
+    bowser.find_element_by_xpath('//*[@id="domainform"]/div/div[2]/div/img')
+
     bowser.save_screenshot('chrome_img.png')
 
-    code_Element = bowser.find_element_by_xpath('//*[@id="searchImg"]')
+    code_Element = bowser.find_element_by_xpath('//*[@id="domainform"]/div/div[2]/div/img')
     # print(code_Element)
 
     img_size = code_Element.size
@@ -23,4 +22,3 @@ class save_screen(object):
     login = Image.open('chrome_img.png').convert('RGB')
     login_img = login.crop(rangle)
     pic = login_img.save('code.jpg')
-
