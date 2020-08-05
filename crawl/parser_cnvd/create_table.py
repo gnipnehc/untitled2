@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 
 
 class add_cnvd(db.Model):
-    __tablename__ = 'all_cnvd_info'
+    __tablename__ = 'one_cnvd_info'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(Text, server_default="")
     cnvd_id = db.Column(String(100), server_default="")

@@ -1,4 +1,3 @@
-
 import requests
 import xlwt
 from tld import get_fld
@@ -67,15 +66,13 @@ with open('domain.txt') as f:
             results.append([url, data['title'], data['domain'], data['host_dept'], data['ip'], data['host_type']])
         else:
             headers = {
-                'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTIyOTUxNDQsIm5iZiI6MTU5MjI5NT'
-                                 'E0NCwianRpIjoiYWQ2ZTM1NTktYTliZS00NmMyLTkxNGQtODY5Y2MzMmM4MjliIiwiZXhwIjoxNTkyMzE2NzQ0'
-                                 'LCJpZGVudGl0eSI6IkhVQU5HWlAiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcy'
-                                 'I6eyJ1c2VyX2lkIjoiYmRiZjAwM2YtYmU0MS00MGJkLWEyMzUtNzllYWMzNGI5OWI3IiwidXNlcm5hbWUiOiJI'
-                                 'VUFOR1pQIiwiZW1haWwiOiJodWFuZ3poYW5ncGVuZ0Bzb2NtYXAubmV0IiwicGhvbmUiOiIxNTUxODk5NzY4My'
-                                 'IsInJvbGUiOjAsIm5hbWUiOiJIVUFOR1pQIiwiYXZhdGFyIjoiaHR0cHM6Ly9naXQuc29jbWFwLm9yZy91cGxv'
-                                 'YWRzLy0vc3lzdGVtL3VzZXIvYXZhdGFyLzMxL2F2YXRhci5wbmciLCJ0ZWxlcGhvbmUiOiIiLCJnaXRsYWJfb2'
-                                 'F1dGgiOnRydWV9LCJjc3JmIjoiMjY2NWQ3NjktNGI1Yy00YzEyLWExOWQtZWNlYzU0YmEwNTQxIn0.lFZ7NoNF'
-                                 'mLcQPJJA87AQyx_OWURkNCZwwy2DUqn4Bco'
+                'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTM5OTc1NzUsIm5iZiI6MTU5Mzk5NzU3NSwian'
+                                 'RpIjoiMWQzMmJlZmMtNDQzMS00ZjJlLWExYmMtM2Q2MTc5YWFhZGJmIiwiZXhwIjoxNTk0MDE5MTc1LCJpZGVudGl0eSI6'
+                                 'InNoaWppdXlpIiwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9jbGFpbXMiOnsidXNlcl9pZCI6ImU5NG'
+                                 'YzNjA5LWFjMTQtNDU2OC04ZjYyLTc1NjI5MDAyNThlMCIsInVzZXJuYW1lIjoic2hpaml1eWkiLCJlbWFpbCI6InNoaWpp'
+                                 'dXlpQHNvY21hcC5uZXQiLCJwaG9uZSI6IjE1MDM5NzgyOTUzIiwicm9sZSI6MSwibmFtZSI6Ilx1NzdmM1x1NGU0NVx1NG'
+                                 'U0OSIsImF2YXRhciI6IiIsInRlbGVwaG9uZSI6IiIsImdpdGxhYl9vYXV0aCI6dHJ1ZX0sImNzcmYiOiJmMzM1Y2RkYS1i'
+                                 'YTQ5LTQ3ZjItYWIyMC0yZGMwNzg1MWRhOGUifQ.j5bjVF1IJZ8Zp5aKktR5U8iLBY77jkghEekCGMHElzg'
            }
             data = {
                 'filter': {
@@ -263,7 +260,7 @@ def write_excel():
             sheet1.write(mm, k, j)
             k += 1
         mm += 1
-    f.save('周口资产梳理.xls')
+    f.save('郑州网信办（单位）-new.xlsx')
 
 print(a)
 print(len(results))

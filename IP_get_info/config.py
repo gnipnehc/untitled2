@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch
 
-es = Elasticsearch('http://elastic:Q21ZbZdh@192.168.199.250:9200/')
+es = Elasticsearch('http://elastic:Q21ZbZdh@148.70.229.211:9200/')
 
-file = '/home/shijiuyi/桌面/郑州网信办.xlsx'
+file = '/home/shijiuyi/Desktop/郑州网信办.xlsx'

@@ -1,5 +1,5 @@
 import os
-path = '/home/shijiuyi/Desktop/other_crawl/crawl_cnvd_list/xml_cnvd'
+path = '/home/shijiuyi/Desktop/other_crawl/crawl_cnvd_list/xml_test'
 list_name = []
 count = 0
 
@@ -11,7 +11,7 @@ for file in os.listdir(path):
         list_name.append(file_path)
 
 # print(list_name)
-    with open('xml_name.txt', 'w') as f:
+    with open('xml_test.txt', 'w') as f:
         count += 1
         for i in list_name:
             f.write(i+'\n')

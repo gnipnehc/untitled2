@@ -3,7 +3,7 @@ icp.py 和  get_info.py运行流程
 
     2. 运行icp.py，将url发送到接口,查看任务的进行程度，登录RabbitMQ查看
 
-    3. 修改headers里authorization里的Bearer，需要在smis.socmap.org里获取最新的，复制到get_info.py中
+    3. 修改headers里authorization里的Bearer，需要在smis.socmap.org里Network里XHR中获取最新的，复制到get_info.py中
 
        修改save的保存文件名称，
 

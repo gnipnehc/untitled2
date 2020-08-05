@@ -20,11 +20,12 @@ def get_ipinfo(ip):
         # print(data)
         location = data['province'] + data['city']
         ip_type = data['scene']
-        address = data['continent'] + data['country'] + data['province'] + data['city']
-        print(location)
-        print(address)
-        print(ip_type)
-        user = data['owner']
+        result[ip] = [location, ip_type]
+        # address = data['continent'] + data['country'] + data['province'] + data['city']
+        # print(location)
+        # print(address)
+        # print(ip_type)
+        # user = data['owner']
         # print(data['accuracy'])
         # print(data['district'])
         # print(data['lat'])
@@ -34,27 +35,27 @@ def get_ipinfo(ip):
         # print(data['source'])
         # print(data['zipcode'])
         # 键值对保存数据
-        result[ip] = [location, ip_type, user]
+        # result[ip] = [location, ip_type, user]
 
 
 def main(filename):
     df = pd.read_excel(filename)
     df = df.replace(np.NaN, '')
-    df['ip节点'].map(get_ipinfo)
+    df['IP'].map(get_ipinfo)
     for ip, values in result.items():
-        df.loc[df['ip节点'] == ip, 'ip类型'] = values[1]
-        df.loc[df['ip节点'] == ip, 'ip地址'] = values[0]
-        df.loc[df['ip节点'] == ip, '拥有者'] = values[2]
+        df.loc[df['IP'] == ip, 'IP类型'] = values[1]
+        df.loc[df['IP'] == ip, 'IP归属地'] = values[0]
+        # df.loc[df['ip节点'] == ip, '拥有者'] = values[2]
 
     new_filename = '.'.join(filename.split('.')[:-1]) + '-new.xlsx'
     df.to_excel(new_filename)
 
 
 if __name__ == '__main__':
-    file = '/home/shijiuyi/桌面/result_ip.xlsx'
+    file = '/home/shijiuyi/桌面/三门峡（IP）.xlsx'
     main(file)
 
 # # 单个ip获取信息
-# ip = '122.114.5.100'
+# ip = '180.76.164.191'
 # get_ipinfo(ip)
 # print(result)

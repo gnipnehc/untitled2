@@ -21,7 +21,7 @@ result_queue = Queue()
 
 class Threading_product(threading.Thread):
 	# 初始化
-    def __init__(self,name,url_queue):
+    def __init__(self ,name, url_queue):
         threading.Thread.__init__(self)
         self.url_queue = url_queue
         self.name = name
@@ -102,7 +102,7 @@ def main():
     # 创建3个消费者
     for i in range(5):
         # 产生消费者
-        threading_constumer = Threading_constumer(i,result_queue)
+        threading_constumer = Threading_constumer(i, result_queue)
         # 执行
         threading_constumer.start()
         # 将消费者放入队列当中
@@ -112,7 +112,7 @@ def main():
         i.join()
     # 获取代码执行完的最后时间
     time4 = time.time()
-    print('共用时：{0}'.format(time4 - time3))
+    print('共用时：{}'.format(time4 - time3))
 
 
 if __name__ == '__main__':

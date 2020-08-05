@@ -5,6 +5,8 @@ import os
 import time
 
 CRAWL_EXIT = False
+
+
 class ThreadCrawl(threading.Thread):
     def __init__(self, thread_name, page_queue):
         # threading.Thread.__init__()
@@ -73,8 +75,8 @@ def main():
     thread_crawl = []
     # 每次开启4个线程
     crawl_list = ['采集线程1号', '采集线程2号', '采集线程3号', '采集线程4号']
-    if not os.path.exists('download'):
-        os.mkdir('download')
+    if not os.path.exists('/home/shijiuyi/桌面/crawl_changyong/crawl_picture/download'):
+        os.mkdir('/home/shijiuyi/桌面/crawl_changyong/crawl_picture/download')
     for thread_name in crawl_list:
         c_thread = ThreadCrawl(thread_name, page_queue)
         c_thread.start()

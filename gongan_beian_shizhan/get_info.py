@@ -101,7 +101,7 @@ def into_url(domain_name):
                         # 两个域名不一致，则存入两条数据
                         second_domain = list[3]
                         with open('two_domain_name.txt', 'a+') as f:
-                            f.write(domain+'\n')
+                            f.write(domain)
 
                         user_message = bowser.find_element_by_xpath('/html/body/div[1]/div[3]/div[3]/div[2]/table')
                         user_content = user_message.find_elements_by_tag_name('td')
@@ -130,7 +130,7 @@ def into_url(domain_name):
                         db.session.commit()
                         time.sleep(0.5)
 
-                    bowser.back()
+                    # bowser.back()
                     bowser.refresh()
                     bowser.find_element_by_xpath('//*[@id="myTab"]/li[2]/a').click()
                     time.sleep(0.5)
@@ -141,6 +141,7 @@ def into_url(domain_name):
                             recode_number='', public_address='', recode_time='', is_code=False)
                         db.session.add(info)
                         db.session.commit()
+
                         bowser.refresh()
                         bowser.find_element_by_xpath('//*[@id="myTab"]/li[2]/a').click()
                         time.sleep(0.5)
@@ -215,7 +216,7 @@ def into_url(domain_name):
                     # 两个域名不一致，则存入两条数据
                     second_domain = list[3]
                     with open('two_domain_name.txt', 'a+') as f:
-                        f.write(domain+'\n')
+                        f.write(domain)
 
                     user_message = bowser.find_element_by_xpath('/html/body/div[1]/div[3]/div[3]/div[2]/table')
                     user_content = user_message.find_elements_by_tag_name('td')
@@ -244,7 +245,7 @@ def into_url(domain_name):
                     db.session.commit()
                     time.sleep(0.5)
 
-                bowser.back()
+                # bowser.back()
                 bowser.refresh()
                 bowser.find_element_by_xpath('//*[@id="myTab"]/li[2]/a').click()
                 time.sleep(0.5)
