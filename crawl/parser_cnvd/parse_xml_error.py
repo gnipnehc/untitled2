@@ -7,6 +7,7 @@ except ImportError:
     import xml.etree.ElementTree as ET
 
 from crawl.parser_cnvd.create_table import db, add_cnvd
+data_list = []
 
 
 def paser_duo():
@@ -15,37 +16,30 @@ def paser_duo():
         # print('---------------'+child.tag, child.attrib)
         for node in child:
             # print(node.tag, node.text)
+            # print(type(node.tag))
+            data_list.append(node.text)
             if node.tag == 'number':
                 item['cnvd_id'] = node.text
                 print(item['cnvd_id'])
 
             if node.tag == 'cves':
                 if node.find('cve'):
-                    cve_id = node.find('cve').find('cveNumber')
-                    if cve_id is not None:
-                        print(cve_id.text)
-                        item['cve_id'] = cve_id.text
-                    else:
-                        item['cnvd_id'] = 'null'
-
+                    cve_id = node.find('cve').find('cveNumber')  # xiugai
+                    item['cve_id'] = cve_id.text if cve_id is not None else 'null'
+                    print(item['cve_id'])
                     url = node.find('cve').find('cveUrl')
-                    if url is not None:
-                        print(url.text)
-                        item['cve_url'] = url.text
-                    else:
-                        item['cve_url'] = 'null'
+                    item['cve_url'] = url.text if url is not None else 'null'
+                    print(item['cve_url'])
 
-            if node.tag == 'title':
+            if node.tag == 'title':  # node.tag是str类型
                 item['title'] = node.text
 
-            if node.tag == 'serverity':
-                # item['levle'] = f'{node.text}危' if node.text else ''
-                serverity = node.find('serverity')
-                if serverity is not None:
-                    print(node.text)
-                    item['levle'] = f'{node.text}危'
-                else:
-                    item['levle'] = 'null'
+            if 'serverity' not in node.tag:
+                item['levle'] = '未评级'
+            if 'serverity' in node.tag:
+                item['levle'] = f'{node.text}危'
+                print(item['levle'])
+
             # if node.get('serverity', default=None):
             #     serverity = node.get('serverity', default=None)
             #     item['levle'] = serverity if serverity else 'wei'
@@ -96,7 +90,7 @@ def paser_duo():
         cve_id = item.get('cve_id', '')
         cve_url = item.get('cve_url', '')
         title = item.get('title', '')
-        levle = item.get('levle', '')
+        levle = item.get('levle', 'null')
         affect = item.get('affect_product', '')
         vul_type = item.get('vulnerability_type', '')
         posted_time = item.get('posted_time', '')
@@ -107,7 +101,8 @@ def paser_duo():
         describe = item.get('describe', '')
         patch = item.get('patch', '')
         patch_describe = item.get('patch_describe', '')
-        # print(cnvd_id, levle, cve_id, cve_url, patch)
+        print(cnvd_id, levle, cve_id, cve_url, patch)
+        print()
 
         # info = add_cnvd(
         #     cnvd_id=cnvd_id, cve_id=cve_id, cve_url=cve_url, title=title, levle=levle, affect_product=affect,
@@ -136,3 +131,4 @@ if __name__ == '__main__':
     root = tree.getroot()
     paser_duo()
     time.sleep(0.5)
+    # print(data_list)
